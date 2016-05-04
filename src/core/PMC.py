@@ -131,6 +131,7 @@ def testingpmc(folder):
 		for  i in range(1, MPMC.shape[0]):
 			for x in range(6, MPMC.shape[1]):
 				if 0 > MPMC[i][x] is True: 
-					print 'Review process number <0'
+					print 'Review process number < 0'
+					break
 				else: 
-					print 'OK'
+					pass

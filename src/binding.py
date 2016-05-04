@@ -71,7 +71,6 @@ def binding(flows, links, folder):
 		for ID in FID:
 			
 			IDdataEstation = int(float(data[ID]['link']['IDEstacion'][0]))
-
 			if IDdataEstation == IDflowsEstation:
 				typ = MFlows[y][colType]
 				

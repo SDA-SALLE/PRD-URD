@@ -39,8 +39,8 @@ def promd(archivo, noun):
 			colLat = index
 		if value == 'IDEstacion':
 			colIDEst = index
-		if value == 'IDNodo':
-			colIDNodo = index 
+		#if value == 'IDNodo':
+		#	colIDNodo = index 
 		if value == 'EHPM25':
 			colEHPM25 = index
 		if value == 'EHPM10':
@@ -83,7 +83,7 @@ def promd(archivo, noun):
 			data[FID]['GENERAL']['LAT'].append(matriz[y][colLat])
 			data[FID]['GENERAL']['FID_Grilla'].append(int(float(matriz[y][colFIDG])))
 			data[FID]['GENERAL']['IDEstation'].append(int(float(matriz[y][colIDEst])))
-			data[FID]['GENERAL']['IDNodo'].append(int(float(matriz[y][colIDNodo])))
+			#data[FID]['GENERAL']['IDNodo'].append(int(float(matriz[y][colIDNodo])))
 
 		if 'IDW' in noun or 'Homogeneous' in noun or 'Heterogeneous' in noun:	
 			data[FID]['EMISION']['EHPM25'].append(matriz[y][colEHPM25])
@@ -257,7 +257,7 @@ def promtyear(dh, dnh, name, nametwo):
 			data[key]['GENERAL']['LAT'].append(matriz[y][colLat])
 			data[key]['GENERAL']['FID_Grilla'].append(int(float(matriz[y][colFIDG])))
 			data[key]['GENERAL']['IDEstation'].append(int(float(matriz[y][colIDEst])))
-			data[key]['GENERAL']['IDNodo'].append(int(float(matriz[y][colIDNodo])))
+			#data[key]['GENERAL']['IDNodo'].append(int(float(matriz[y][colIDNodo])))
 
 		if 'IDW' in name or 'Homogeneous' in name or 'Heterogeneous' in name:
 			data[key]['EMISION']['EHPM25'].append(matriz[y][colEHPM25])

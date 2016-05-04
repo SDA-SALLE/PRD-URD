@@ -14,18 +14,44 @@ from uncertain import *
 import csv
 import numpy as np
 import json
+import xlrd
 
+Constants = os.path.join('..', 'data', 'constants', 'Resuspendido.xlsx')
+workbook = xlrd.open_workbook(Constants)
+year = workbook.sheet_by_index(0)
 
-#Pesos Vehiculos
-PesosV = {'L':[1.6], 'C':[2.4], 'BT':[8.2], 'B':[14.5], 'AL':[14.5],  'ESP':[8.2], 'INT':[14.5], 'C2P':[4.6], 'C2G':[8.5], 'C3-C4':[28], 'C5':[35.0], '>C5':[40], 'M':[0.2]}
-PesosVArt = {'AT': [30.0], 'BA': [42.0]}
 NameVehicles = ['L', 'C', 'BT', 'B', 'AL',  'ESP', 'INT', 'C2P', 'C2G', 'C3-C4', 'C5', '>C5', 'M', 'TOTAL', 'NH_>C5', 'NH_AL', 'NH_B', 'NH_BT', 'NH_C', 'NH_C2G', 'NH_C2P', 'NH_C3-C4', 'NH_C5', 'NH_INT', 'NH_M', 'NH_ESP', 'NH_L', 'NH_TOTAL']
 Art = ['AT', 'BA', 'NH_AT', 'NH_BA', 'TOTAL', 'NH_TOTAL']
 
+#Pesos Vehiculos
+dh = workbook.sheet_by_index(1)
 
-#Dias Habiles y No Habiles 2012
-DH = 245
-DNH = 120
+#constants
+PesosV = {}
+PesosVArt = {}
+for pos in range(1, dh.nrows):
+	#print dh.cell_value(pos, 0)
+	vehicle = str(dh.cell_value(pos, 0))
+	number = dh.cell_value(pos, 1)
+	
+	if vehicle in NameVehicles:
+		if PesosV.get(vehicle) is None:
+			PesosV[vehicle] = []
+		PesosV[vehicle].append(number)
+	
+	elif vehicle in Art:
+		if PesosVArt.get(vehicle) is None:
+			PesosVArt[vehicle] = []
+		PesosVArt[vehicle].append(number)
+
+#print pesosvart
+
+#PesosV = {'L':[1.6], 'C':[2.4], 'BT':[8.2], 'B':[14.5], 'AL':[14.5],  'ESP':[8.2], 'INT':[14.5], 'C2P':[4.6], 'C2G':[8.5], 'C3-C4':[28], 'C5':[35.0], '>C5':[40], 'M':[0.2]}
+#PesosVArt = {'AT': [30.0], 'BA': [42.0]}
+
+#Dias Habiles y No Habiles 2014
+DH = int(year.cell_value(1, 0))
+DNH = int(year.cell_value(1, 1))
 
 #Constantes.
 PMDIEZK = 0.62
@@ -254,9 +280,13 @@ def idw(matrizidw, directorio, noun):
 	csvsalida.close()
 
 	promd(arch, "EmissionDayIDW" + noun)
+	print 'end promd'
 	promtyear(DH, DNH, "EmissionDayIDW" + noun ,  "EmissionYearIDW" + noun)
+	print 'end promtyear'
 	emissionGrid(arch, 'IDW_' + noun)
+	print 'end emissionGrid'
 	uncertainidw(arch, 'IDW_' + noun)
+	print 'end uncertainidw'
 
 #Cambiar para que solo haga Habil
 def ckdh(matrizckdh, directorio, noun):

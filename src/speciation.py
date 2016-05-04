@@ -202,7 +202,8 @@ def testing():
 
 
 		if sumTotal1 == sumTotal2:
-			print 'OK'
+			pass
+			#print 'OK'
 		else: 
 			print 'Review process or data' 
 			

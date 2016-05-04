@@ -32,8 +32,8 @@ def FEPM (K, CS, PP, SL, W):
 	return FE
 
 	
-def FactorActividad (TamGri, FV):
-	FA = TamGri * FV
+def FactorActividad (shapelength, FV):
+	FA = shapelength * FV
 	FA = FA/1000
 	return FA
 
@@ -41,13 +41,13 @@ def Emission (FE, FA):
 	E = FE * FA
 	return E
 
-def EmisionGrDia (FE, FA):
-	EGrD = FE * FA
-	return EGrD
+# def EmisionGrDia (FE, FA):
+# 	EGrD = FE * FA
+# 	return EGrD
 
-def EmisionGrH (EGrD):
-	EGrH = EGrD/24
-	return EGrH
+# def EmisionGrH (EGrD):
+# 	EGrH = EGrD/24
+# 	return EGrH
 
 def FAVKT(lg, flujo):
 	FA = (lg/1000)*flujo

@@ -146,32 +146,58 @@ def full(archive, noun):
 
 	writefull(str(fullPM25), str(fullPM10), noun)
 
+def listaCSV(direccion):
+   	#Variable para la ruta al directorio
+	path = os.path.join(direccion,'')
+	#print direccion
+
+	#Lista vacia para incluir los ficheros
+	lstFilesEmissions = []
+
+	#Lista con todos los ficheros del directorio:
+	lstDir = os.walk(path)   #os.walk()Lista directorios y ficheros
+	datos = {}
+
+	#Crea una lista de los ficheros que existen en el directorio y los incluye a la lista.
+	for root, dirs, files in lstDir:
+	    for fichero in files:
+	        (nombreFichero, extension) = os.path.splitext(fichero)
+	        if(extension == '.csv'):
+	        	lstFilesEmissions.append(nombreFichero+extension)
+
+	return lstFilesEmissions
+
 def emissiontotal():
 
-	idwtm = os.path.join('..','data','out', 'EmissionYear' ,'EmissionYearIDWTM.csv')
-	full(idwtm, 'IDW_TM')
+	folderEmsionYear = os.path.join('..','data','out', 'EmissionYear', '')
+	listEmsionYear = listaCSV(folderEmsionYear)
 
-	idwprincipal = os.path.join('..','data','out','EmissionYear', 'EmissionYearIDWPrincipal.csv')
-	full(idwprincipal, 'IDW_Principal')
+	for name in listEmsionYear:
+		archive = os.path.join(folderEmsionYear, name)
+		if 'Principal' in name: 
+			full(archive, 'PrincipalIDW')
+		if 'Secundary' in name:
+			full(archive, 'SecundaryIDW')
+		if 'TM' in name: 
+			full(archive, 'TMIDW')
 
-	ckdhprincipal = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDHPrincipal.csv')
-	ckdhtm = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDHTM.csv')
-	full(ckdhprincipal, 'CKDH_Principal')
-	full(ckdhtm, 'CKDH_TM')
 
-	ckdnhprincipal = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDNHPrincipal.csv')
-	ckdnhtm = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDNHTM.csv')
-	full(ckdnhprincipal, 'CKDNH_Principal')
-	full(ckdnhtm, 'CKDNH_TM')
+	#------ not process 2014---- #
+	#ckdhprincipal = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDHPrincipal.csv')
+	#ckdhtm = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDHTM.csv')
+	#full(ckdhprincipal, 'CKDH_Principal')
+	#full(ckdhtm, 'CKDH_TM')
+
+	#ckdnhprincipal = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDNHPrincipal.csv')
+	#ckdnhtm = os.path.join('..','data','out','EmissionYear', 'EmissionYearCKDNHTM.csv')
+	#full(ckdnhprincipal, 'CKDNH_Principal')
+	#full(ckdnhtm, 'CKDNH_TM')
 	
-	secundaryIDW = os.path.join('..','data','out','EmissionYear', 'EmissionYearIDWSecundary.csv')
-	full(secundaryIDW, 'SecundaryIDW')
+	#secundaryhomogeneous = os.path.join('..','data','out','EmissionYear', 'EmissionYearHomogeneous.csv')
+	#full(secundaryhomogeneous,'SecundaryHomogeneous')
 
-	secundaryhomogeneous = os.path.join('..','data','out','EmissionYear', 'EmissionYearHomogeneous.csv')
-	full(secundaryhomogeneous,'SecundaryHomogeneous')
-
-	secundaryhetereogeneous = os.path.join('..','data','out', 'EmissionYear', 'EmissionYearHeterogeneous.csv')
-	full(secundaryhetereogeneous,'SecundaryHetereogeneous')
+	#secundaryhetereogeneous = os.path.join('..','data','out', 'EmissionYear', 'EmissionYearHeterogeneous.csv')
+	#full(secundaryhetereogeneous,'SecundaryHetereogeneous')
 
 def emissionGrid(archive, noun):
 	
@@ -257,6 +283,8 @@ def emissionGrid(archive, noun):
 				elif Type == 'ENHPM10':
 					data[ID_Grid]['Emissions'][Type][hour].append(matriz[i][colENHPM10])
 	
+
+	#Error
 	keys = data.keys()
 	
 	for key in keys:

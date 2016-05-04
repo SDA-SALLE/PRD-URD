@@ -97,7 +97,6 @@ def writebinding(folder, data):
 	FID = data.keys()
 
 	cont = 0
-	
 	for ID in FID:
 		nameslinks = data[ID]['link'].keys()
 		namevehicle = sorted(data[ID]['flows']['HABIL'][0].keys())
@@ -154,15 +153,13 @@ def writeemsions(data, name, identy):
 		csvsalida = open(folder + name + ".csv", 'w')
 		salida = csv.writer(csvsalida, delimiter=',')
 		if 'IDW' in name or 'Heterogeneous' in name or 'Homogeneous' in name: 
-			salida.writerow(["FID_Link","FID_Grilla", "IDEstacion", "IDNodo", "COL", "ROW", "LAT", "LON", "EHPM10", "EHPM25", "ENHPM10", "ENHPM25"])
+			salida.writerow(["FID_Link","FID_Grilla", "IDEstacion",  "COL", "ROW", "LAT", "LON", "EHPM10", "EHPM25", "ENHPM10", "ENHPM25"])
 		elif 'CKDH' in name: 
-			salida.writerow(["FID_Link","FID_Grilla", "IDEstacion", "IDNodo", "COL", "ROW", "LAT", "LON", "EHPM10", "EHPM25"])
+			salida.writerow(["FID_Link","FID_Grilla", "IDEstacion",  "COL", "ROW", "LAT", "LON", "EHPM10", "EHPM25"])
 		elif 'CKDNH' in name: 
-			salida.writerow(["FID_Link","FID_Grilla", "IDEstacion", "IDNodo", "COL", "ROW", "LAT", "LON", "ENHPM10", "ENHPM25"])
-
+			salida.writerow(["FID_Link","FID_Grilla", "IDEstacion", "COL", "ROW", "LAT", "LON", "ENHPM10", "ENHPM25"])
 
 		FID_Link = data.keys()
-		
 		for FID in FID_Link: 
 			identy = int(float(FID))
 			csvsalida.write(str(identy))
@@ -170,8 +167,6 @@ def writeemsions(data, name, identy):
 			csvsalida.write(str(data[FID]['GENERAL']['FID_Grilla'][0]))
 			csvsalida.write(',')
 			csvsalida.write(str(data[FID]['GENERAL']['IDEstation'][0]))
-			csvsalida.write(',')
-			csvsalida.write(str(data[FID]['GENERAL']['IDNodo'][0]))
 			csvsalida.write(',')
 			csvsalida.write(str(data[FID]['GENERAL']['COL'][0]))
 			csvsalida.write(',')
@@ -207,7 +202,7 @@ def writeemsions(data, name, identy):
 		csvsalida = open(folder + name + ".csv", 'w')
 		salida = csv.writer(csvsalida, delimiter=',')
 
-		salida.writerow(['FID_Grilla', 'IDEstacion', 'IDNodo', 'COL', 'ROW', 'LAT', 'LON', 'ETPM10', 'ETPM25'])
+		salida.writerow(['FID_Grilla', 'IDEstacion', 'COL', 'ROW', 'LAT', 'LON', 'ETPM10', 'ETPM25'])
 
 		FID_Link = data.keys()
 		
@@ -216,8 +211,6 @@ def writeemsions(data, name, identy):
 			csvsalida.write(str(identy))
 			csvsalida.write(',')
 			csvsalida.write(str(data[FID]['GENERAL']['IDEstation'][0]))
-			csvsalida.write(',')
-			csvsalida.write(str(data[FID]['GENERAL']['IDNodo'][0]))
 			csvsalida.write(',')
 			csvsalida.write(str(data[FID]['GENERAL']['COL'][0]))
 			csvsalida.write(',')
