@@ -15,14 +15,17 @@ from binding import *
 from flowsdays import *
 from csv import *
 from speciation import *
+from clear import *
 import os
 
+folderout = os.path.join('..', 'data', 'out', '')
+clear(folderout)
 
-archiveflows = os.path.join('..','data','flows','promFinal_1.csv'); #Archive traffic flow
+archiveflows = os.path.join('..','data','flows','promFinal.csv'); #Archive traffic flow
 
-archiveprincipal = os.path.join('..','data','VP' , 'Principales','PRINCIPALES_1.xlsx');
-archivesecondary = os.path.join('..','data','VP','Secundarias','SECUNDARIAS_1.xlsx');
-archivetm = os.path.join('..','data','VP','TM','TM_1.xlsx')
+archiveprincipal = os.path.join('..','data','VP' , 'Principales','PRINCIPALES.xlsx');
+archivesecondary = os.path.join('..','data','VP','Secundarias','SECUNDARIAS.xlsx');
+archivetm = os.path.join('..','data','VP','TM','TM.xlsx')
 
 #flowsdays(archiveflows)
 print 'comienza brinding hora para principales'

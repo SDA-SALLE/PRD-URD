@@ -104,6 +104,7 @@ def bindingsecondary(flows, links):
 	
 	Intermedia = 0.37
 	Local = 0.22
+	
 	Activity = ['L', 'C', 'ESP', 'M']
 	ResidencialAct = 0.22
 	NotActivity = [ 'B', 'C2P', 'BT', 'AL', 'AT', 'BA', 'INT', 'C2G', 'C3-C4', 'C5', '>C5']
