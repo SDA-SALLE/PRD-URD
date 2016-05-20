@@ -51,12 +51,13 @@ def wcsv(data, noun):
 def writematriz(matriz, folder):
 
 	csvsalida = open(folder + ".csv", 'w')
-	#print csvsalida
-	#print matriz.shape[0]
-	salida = csv.writer(csvsalida, delimiter=',')#, quoting=csv.QUOTE_ALL
-
-	for x in range(0, matriz.shape[0]):
-		salida.writerow(matriz[x])
+	for i in range(0, matriz.shape[0]):
+		for x in range(0, matriz.shape[1]):
+			if x == 0:
+				csvsalida.write(matriz[x][i])
+			else: 
+				csvsalida.write(',')
+				csvsalida.write(matriz[x][i])
 
 	csvsalida.close()
 

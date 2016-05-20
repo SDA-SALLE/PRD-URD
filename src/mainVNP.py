@@ -11,7 +11,14 @@ import os
 from VNP import *
 from excelmatriz import *
 from PMC import *
+from speciation import *
+from clear import *
 
+folderout = os.path.join('..', 'data', 'out', 'speciation', 'VNP', '')
+clear(folderout)
+
+folderout = os.path.join('..', 'data', 'out', 'EmissionGrid', 'VNP', '')
+clear(folderout)
 
 
 archivepublic = os.path.join("..","data","VNP",'Publico',"PUBLICO.xlsx");
@@ -39,8 +46,19 @@ archivesPM101 = os.path.join('..','data','out', 'EmissionGrid', 'VNP','PM10_VNPI
 archivesPM102 = os.path.join('..','data','out', 'EmissionGrid', 'VNP','PM10_VNPPublic.csv')
 brindingfinal(archivesPM101, archivesPM102)
 
-print 'Start PMC'
+print "Comienza proceso de especiacion"
+print "WARNING! Emissions to speciate are in g/h"
+speciationvnp()
 
+print 'Process Testing'
+testing('VNP')
+
+print 'Testing OK'
+print 'Finaliza con Exito'
+
+
+
+print 'Start PMC'
 folderGrid = os.path.join('..','data','out', 'EmissionGrid', 'VNP', '')
 pmc(folderGrid)
 folderout = os.path.join('..','data','out', 'EmissionGrid', 'VNP', 'PMC', '')

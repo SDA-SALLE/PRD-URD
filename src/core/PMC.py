@@ -100,22 +100,36 @@ def pmc(folder):
 				hour += 1
 
 		noun = listEmitionsPM25[i]
+		
 		if 'EHPM25' in noun: 
 			if 'TM' in noun:
 				noun = noun.strip('EHPM25.csv')	
+				noun2 = 'HABIL'
 			else: 
 				noun = noun.strip('_EHPM25.csv')
+				noun2 = 'HABIL'
+		else: 
+			noun2 = 'Null'
+
 		if 'ENHPM25' in noun: 
 			if 'TM' in noun: 
 				noun = noun.strip('ENHPM25.csv')
+				noun2 = 'NHABIL'
 			else:
 				noun = noun.strip('_ENHPM25.csv')
+				noun2 = 'NHABIL'
+		else: 
+			noun2 = 'Null'
 
 		if 'PM25' in noun: 
 			noun = noun.strip('PM25_')
 			noun = noun.strip('.csv')
 
-		noun = 'PMC_' + noun 
+		if 'HABIL' in noun2 or 'NHABIL' in noun2:
+			noun = 'PMC_' + noun + '_' + noun2
+		else: 
+			noun = 'PMC_' + noun 
+		#print noun
 		PMC(data, noun, folder)
 
 def testingpmc(folder):
