@@ -3,10 +3,10 @@ Procesador de emisiones material resuspendido
 
 ##Como correr el programa
 
-``python
+```python
   cd src
   python mainVP.py ../data/input.txt
-``
+```
 
 
 
