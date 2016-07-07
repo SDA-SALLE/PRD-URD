@@ -1,6 +1,6 @@
 # RESUSPENDED
-Resuspended paved and unpaved. 
-Programing in python 2.7 import directories xlrd, json, csv, sys.
+Resuspended paved and unpaved. </br>
+Programing in python 2.7 import directories xlrd, json, csv, sys. </br>
 To import xlrd preview install pip: 
 <ul>
 <li>$ sudo apt-get install pip 
